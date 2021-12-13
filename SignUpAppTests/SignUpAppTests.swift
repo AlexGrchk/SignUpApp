@@ -11,23 +11,40 @@ import XCTest
 class SignUpAppTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testApiCallSuccess() {
+        let expectation = self.expectation(description: "We expect api call to return success")
+        let repository = SignUpRepositoryImpl()
+        repository.signup(email: "test@test.com", password: "1234567asd") { response in
+            switch response {
+            case .success(_):
+                expectation.fulfill()
+            case .error(let error):
+                XCTFail("Failed sign up call with error \(error)")
+            }
         }
+        self.waitForExpectations(timeout: 10)
     }
+    
+    func testApiFail() {
+        let expectation = self.expectation(description: "We expect that call will fail")
+        let repository = SignUpRepositoryImpl()
+        repository.signup(email: "test@error.com", password: "123asdasda") { response in
+            switch response {
+            case .success(_):
+                XCTFail("Response should fail but it returned success")
+            case .error(_):
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 10)
+    }
+    
 
 }

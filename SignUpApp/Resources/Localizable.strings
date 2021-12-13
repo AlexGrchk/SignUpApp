@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  SignUpApp
+
+  Created by Alex Mochalov on 13/12/2021.
+  
+*/
+
+"later" = "Later";
+"createAnAccount" = "Create an account";
+"createAnAccountButton" = "Create an Account";
+"emailAddress" = "Email Address";
+"password" = "Password";
+"alreadyHaveAnAccountQuestion" = "Already have an account?";
+"continueWithGoogle" = "Continue with Google";
+"continueWithFacebook" = "Continue with Facebook";
+"continueWithApple" = "Continue with Apple";
+"unknownError" = "Unknown error";
+"inputCorrectEmail" = "Please input correct email address";
+"ok" = "OK";
+"error" = "Error";
